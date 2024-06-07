@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserLdap} from "../models/user-ldap.model";
-import {UsersService} from "../service/users.service";
-import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
+import {UserLdap} from "../../models/user-ldap.model";
+import {FormBuilder, Validators} from "@angular/forms";
 import {ConfirmValidParentMatcherl, passwordMatchingValidator} from "./passwords-validator.directive";
 
 
