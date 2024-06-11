@@ -116,6 +116,7 @@ export abstract class LdapDetailsComponent {
 
   protected getUserFromFormControl(): UserLdap {
     return {
+      id: this.user ===undefined? undefined: this.user.id,
       active: false,
       employeNiveau: 1,
       motDePasse: '',

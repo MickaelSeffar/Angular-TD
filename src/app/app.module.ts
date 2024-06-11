@@ -8,6 +8,9 @@ import {AppMaterialModule} from "./app-material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LdapManagementModule} from './ldap-management/ldap-management.module';
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientModule} from "@angular/common/http";
+import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryUsersService} from "./service/in-memory-users.service";
 
 @NgModule({
   declarations: [
@@ -23,6 +26,10 @@ import {NoopAnimationsModule} from "@angular/platform-browser/animations";
     AppMaterialModule,
     LdapManagementModule,
     AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryUsersService,{dataEncapsulation:false}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

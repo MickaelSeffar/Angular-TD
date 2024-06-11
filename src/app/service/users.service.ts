@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserLdap} from "../models/user-ldap.model";
 import {LDAP_USERS} from "../models/ldap-mock-data";
 import {Observable, of, throwError} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +10,37 @@ import {Observable, of, throwError} from "rxjs";
 export class UsersService {
 
   users: UserLdap[] = LDAP_USERS;
+  private usersUrl ='api/users';
+  private httpOptions = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   addUser(user: UserLdap): Observable<UserLdap> {
-    this.users.push(user);
-    return of(user);
+   return this.http.post<UserLdap>(this.usersUrl, user, {
+     headers: this.httpOptions
+   });
   }
 
-  updateUser(userToUpdate:UserLdap): Observable<UserLdap>{
-    const user = this.users.find(u=>u.login === userToUpdate.login);
-    if (user){
-      user.nom = userToUpdate.nom;
-      user.prenom = userToUpdate.prenom;
-      user.nomComplet = userToUpdate.nomComplet;
-      user.motDePasse = userToUpdate.motDePasse;
-      return of(userToUpdate);
-    }
-    return throwError(()=>new Error('Utilisateur non trouvé'));
+  updateUser(user:UserLdap): Observable<UserLdap>{
+    return this.http.put<UserLdap>(this.usersUrl+'/'+user.id,{
+      hearders:this.httpOptions
+    });
   }
 
   getUsers(): Observable<UserLdap[]> {
-    return of(this.users);
+    return this.http.get<UserLdap[]>(this.usersUrl);
   }
 
 
-  getUser(login: string): Observable<UserLdap> {
-    const user: UserLdap | undefined = this.users.find(user => user?.login === login);
-    if (user !== undefined)
-      return of(user);
+  getUser(id: number): Observable<UserLdap> {
+    return this.http.get<UserLdap>(this.usersUrl+'/'+id);
+  }
 
-    return throwError(() => new Error('Utilisateurs non trouvé'));
+  deleteUser(id:number): Observable<UserLdap> {
+    return this.http.delete<UserLdap>(this.usersUrl+'/'+id,{
+      headers: this.httpOptions
+    });
   }
 }
 
