@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {NavbarComponent} from '../app/ldap-management/navbar/navbar.component';
 import {AppMaterialModule} from "./app-material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LdapManagementModule} from './ldap-management/ldap-management.module';
@@ -11,12 +10,15 @@ import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryUsersService} from "./service/in-memory-users.service";
+import { LoginComponent } from './security/login/login.component';
+import {MatCardModule} from "@angular/material/card";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    NavbarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,10 +30,13 @@ import {InMemoryUsersService} from "./service/in-memory-users.service";
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryUsersService,{dataEncapsulation:false}
-    )
+      InMemoryUsersService, {dataEncapsulation: false}
+    ),
+    MatCardModule
   ],
   providers: [],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

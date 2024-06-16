@@ -61,7 +61,7 @@ export class LdapEditComponent extends LdapDetailsComponent implements OnInit {
       error:(err) => {
         this.processValidateRunning = false;
         this.errorMessage = "L'utilisateur n'existe pas !";
-        console.error('Obteitnion utilisateur',err);
+        console.error('Obention utilisateur',err);
         this.snackBar.open('Utilisateur non trouvé !','X');
       }
     });

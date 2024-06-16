@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {UserLdap} from "../../models/user-ldap.model";
-import {MatPaginator} from "@angular/material/paginator";
 import {MatSlideToggleChange} from "@angular/material/slide-toggle";
 import {UsersService} from "../../service/users.service";
 import {Router} from "@angular/router";
@@ -56,7 +55,7 @@ export class LdapListComponent implements OnInit {
   }
 
   edit(login: string): void {
-    this.router.navigate(['user/', login]).then((e) => {
+    this.router.navigate(['users/', login]).then((e) => {
       if (!e) {
         console.error('Navigation has failed !');
       }
@@ -64,7 +63,7 @@ export class LdapListComponent implements OnInit {
   }
 
   addUser(){
-    this.router.navigate(['/user/add']).then((e)=> {
+    this.router.navigate(['/users/add']).then((e)=> {
       if (!e){
         console.log('Navicagion has failed !')
       }

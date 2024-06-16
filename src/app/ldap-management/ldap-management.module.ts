@@ -12,6 +12,7 @@ import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryUsersService} from "../service/in-memory-users.service";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 
 @NgModule({
@@ -20,20 +21,23 @@ import {InMemoryUsersService} from "../service/in-memory-users.service";
     LdapAddComponent,
     LdapEditComponent,
     AlertComponent,
+    NavbarComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    NoopAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppMaterialModule,
-    LdapManagementRoutingModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryUsersService,{dataEncapsulation:false}
-    )
-  ]
+    imports: [
+        CommonModule,
+        BrowserModule,
+        NoopAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppMaterialModule,
+        LdapManagementRoutingModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryUsersService, {dataEncapsulation: false}
+        ),
+
+
+    ]
 })
 export class LdapManagementModule {
 }
